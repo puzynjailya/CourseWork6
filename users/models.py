@@ -36,7 +36,7 @@ class User(AbstractBaseUser):
 
     @property
     def is_staff(self):
-        return self.is_user
+        return self.is_admin
 
     def has_perm(self, perm, obj=None):
         return self.is_admin
@@ -46,11 +46,11 @@ class User(AbstractBaseUser):
 
     @property
     def is_admin(self):
-        self.role = UserRoles.admin_role.value
+        return self.role == UserRoles.admin_role.value
 
     @property
     def is_user(self):
-        self.role = UserRoles.user_role.value
+        return self.role == UserRoles.user_role.value
 
     class Meta:
         verbose_name = "Пользователь"

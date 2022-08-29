@@ -24,11 +24,11 @@ class IsAdmin(permissions.BasePermission):
     message = 'Здесь хулиганить могут только Админы, т.е. те, кому все дозволенно!'
 
     def has_permission(self, request, view):
-        if request.user.role == UserRoles.ADMIN:
+        if request.user.role == UserRoles.admin_role:
             return True
         return False
 
     def has_object_permission(self, request, view, obj):
-        if request.user.role == UserRoles.ADMIN:
+        if request.user.role == UserRoles.admin_role:
             return True
         return False
